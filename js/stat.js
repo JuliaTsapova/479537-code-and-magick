@@ -1,4 +1,6 @@
-var renderStatistics = function(ctx, names, times) {
+'use strict';
+  var renderStatistics = function (ctx, names, times) {
+
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.fillRect(110, 20, 420, 270);
   ctx.fillStyle = '#ffffff';
@@ -28,25 +30,25 @@ var renderStatistics = function(ctx, names, times) {
   var indentAfterColumn = 20;
   var indentBeforeColumn = 10;
 
-  var randomOpacity = function() {
+  var randomOpacity = function () {
     return (Math.random() * 0.9 + 0.1).toFixed(1);
   };
-
+  //j
   for (var i = 0; i < times.length; i++) {
 
     var fillStyle = 'rgba(255, 0, 0, 1)';
-    if (names[i] != 'Вы') {
+    if (names[i] !== 'Вы') {
       fillStyle = 'rgba(0, 0, 255, ' + randomOpacity() + ')';
     }
 
-    var time = Math.floor(times[i]);
-    var barHeight = initialY - time * step - indentAfterColumn;
+    var flooredTime = Math.floor(times[i]);
+    var barHeight = initialY - flooredTime * step - indentAfterColumn;
 
     ctx.fillStyle = fillStyle;
-    ctx.fillRect(initialX + indent * i, barHeight, barWidth, time * step);
+    ctx.fillRect(initialX + indent * i, barHeight, barWidth, flooredTime * step);
     ctx.fillStyle = '#000000';
     ctx.fillText(names[i], initialX + indent * i, initialY);
-    ctx.fillText(time, initialX + indent * i, barHeight - indentBeforeColumn);
+    ctx.fillText(flooredTime, initialX + indent * i, barHeight - indentBeforeColumn);
 
   }
 };
