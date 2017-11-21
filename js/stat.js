@@ -22,18 +22,31 @@ var renderStatistics = function(ctx, names, times) {
   var histogramHeight = 150;
   var step = histogramHeight / (max - 0);
   var barWidth = 40;
-  var indent = 90;
+  var indent = barWidth + 50;
   var initialX = 140;
   var initialY = 260;
   var indentAfterColumn = 20;
   var indentBeforeColumn = 10;
 
-  for (var i = 0; i < times.length; i++) {
-    var barHeight = initialY - times[i] * step - indentAfterColumn;
+  var randomOpacity = function() {
+    return (Math.random() * 0.9 + 0.1).toFixed(1);
+  };
 
-    ctx.fillRect(initialX + indent * i, barHeight, barWidth, times[i] * step);
+  for (var i = 0; i < times.length; i++) {
+
+    var fillStyle = 'rgba(255, 0, 0, 1)';
+    if (names[i] != 'Вы') {
+      fillStyle = 'rgba(0, 0, 255, ' + randomOpacity() + ')';
+    }
+
+    var time = Math.floor(times[i]);
+    var barHeight = initialY - time * step - indentAfterColumn;
+
+    ctx.fillStyle = fillStyle;
+    ctx.fillRect(initialX + indent * i, barHeight, barWidth, time * step);
+    ctx.fillStyle = '#000000';
     ctx.fillText(names[i], initialX + indent * i, initialY);
-    ctx.fillText(times[i], initialX + indent * i, barHeight - indentBeforeColumn);
+    ctx.fillText(time, initialX + indent * i, barHeight - indentBeforeColumn);
 
   }
 };
