@@ -1,6 +1,6 @@
 'use strict';
  window.renderStatistics = function (ctx, names, times) {
-   var max = Math.max(...times);
+   var max = Math.max.apply(null, times);
    var histogramHeight = 150;
    var step = histogramHeight / (max - 0);
    var barWidth = 40;
