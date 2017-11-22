@@ -9,11 +9,11 @@ window.renderStatistics = function (ctx, names, times) {
   var initialY = 260;
   var indentAfterColumn = 20;
   var indentBeforeColumn = 10;
+  var minOpacity = 0.1;
+  var maxOpacity = 0.9;
 
   var getRandom = function (min, max) {
-    max = 0.9;
-    min = 0.1;
-    return (Math.random() * max + min).toFixed(1);
+    return (Math.random() * (max - min) + min).toFixed(1);
   };
 
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
@@ -28,7 +28,7 @@ window.renderStatistics = function (ctx, names, times) {
   for (var i = 0; i < times.length; i++) {
     var barHeight = initialY - Math.floor(times[i]) * step - indentAfterColumn;
 
-    ctx.fillStyle = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + getRandom() + ')';
+    ctx.fillStyle = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + getRandom(minOpacity, maxOpacity) + ')';
     ctx.fillRect(initialX + indent * i, barHeight, barWidth, Math.floor(times[i]) * step);
     ctx.fillStyle = '#000000';
     ctx.fillText(names[i], initialX + indent * i, initialY);
