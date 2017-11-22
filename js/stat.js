@@ -1,5 +1,20 @@
 'use strict';
-var renderStatistics = function (ctx, names, times) {
+ window.renderStatistics = function (ctx, names, times) {
+   var max = Math.max(...times);
+   var histogramHeight = 150;
+   var step = histogramHeight / (max - 0);
+   var barWidth = 40;
+   var indent = barWidth + 50;
+   var initialX = 140;
+   var initialY = 260;
+   var indentAfterColumn = 20;
+   var indentBeforeColumn = 10;
+
+   var getRandom = function (min, max) {
+     max = 0.9;
+     min = 0.1;
+     return (Math.random() * max + min).toFixed(1);
+   };
 
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.fillRect(110, 20, 420, 270);
@@ -10,43 +25,13 @@ var renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 60);
 
-  var max = -1;
-
   for (var i = 0; i < times.length; i++) {
-    var time = times[i];
-    if (time > max) {
-      max = time;
-    }
-  }
+    var barHeight = initialY - Math.floor(times[i]) * step - indentAfterColumn;
 
-  var histogramHeight = 150;
-  var step = histogramHeight / (max - 0);
-  var barWidth = 40;
-  var indent = barWidth + 50;
-  var initialX = 140;
-  var initialY = 260;
-  var indentAfterColumn = 20;
-  var indentBeforeColumn = 10;
-
-  var randomOpacity = function () {
-    return (Math.random() * 0.9 + 0.1).toFixed(1);
-  };
-
-  for (var j = 0; j < times.length; j++) {
-
-    var fillStyle = 'rgba(255, 0, 0, 1)';
-    if (names[j] !== 'Вы') {
-      fillStyle = 'rgba(0, 0, 255, ' + randomOpacity() + ')';
-    }
-
-    var flooredTime = Math.floor(times[j]);
-    var barHeight = initialY - flooredTime * step - indentAfterColumn;
-
-    ctx.fillStyle = fillStyle;
-    ctx.fillRect(initialX + indent * j, barHeight, barWidth, flooredTime * step);
+    ctx.fillStyle = names[i] == 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + getRandom() + ')';
+    ctx.fillRect(initialX + indent * i, barHeight, barWidth, Math.floor(times[i]) * step);
     ctx.fillStyle = '#000000';
-    ctx.fillText(names[j], initialX + indent * j, initialY);
-    ctx.fillText(flooredTime, initialX + indent * j, barHeight - indentBeforeColumn);
-
+    ctx.fillText(names[i], initialX + indent * i, initialY);
+    ctx.fillText(Math.floor(times[i]), initialX + indent * i, barHeight - indentBeforeColumn);
   }
 };
