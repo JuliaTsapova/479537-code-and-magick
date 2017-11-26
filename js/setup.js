@@ -1,8 +1,8 @@
 'use strict';
-
+irstN
 var wizadrs = [];
 var count = 4;
-var fame = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристов', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
+var firstName = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристов', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var surname = [' да Марья', ' Верон', ' Мирабелла', ' Вальц', ' Онопко', ' Топольницкая', ' Нионго', ' Ирвинг'];
 var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
@@ -16,7 +16,7 @@ var getRandomKey = function (arr) {
 
 var renderWizard = function (data) {
   var wizard = similarWizardTemplate.cloneNode(true);
-  wizard.querySelector('.setup-similar-label').textContent = data.fame;
+  wizard.querySelector('.setup-similar-label').textContent = data.firstName;
   wizard.querySelector('.wizard-coat').style.fill = data.coatColor;
   wizard.querySelector('.wizard-eyes').style.fill = data.eyesColor;
   return wizard;
@@ -24,7 +24,7 @@ var renderWizard = function (data) {
 
 while (--count >= 0) {
   wizadrs.push({
-    fame: fame[getRandomKey(fame)] + surname[getRandomKey(surname)],
+    firstName: firstName[getRandomKey(firstName)] + surname[getRandomKey(surname)],
     coatColor: coatColor[getRandomKey(coatColor)],
     eyesColor: eyesColor[getRandomKey(eyesColor)]
   });
