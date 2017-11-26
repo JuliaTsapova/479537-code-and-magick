@@ -10,11 +10,11 @@ var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var fragment = document.createDocumentFragment();
 
-var getRandomKey = function(arr) {
+var getRandomKey = function (arr) {
   return Math.floor(Math.random() * arr.length);
 };
 
-var renderWizard = function(data) {
+var renderWizard = function (data) {
   var wizard = similarWizardTemplate.cloneNode(true);
   wizard.querySelector('.setup-similar-label').textContent = data.fame;
   wizard.querySelector('.wizard-coat').style.fill = data.coatColor;
