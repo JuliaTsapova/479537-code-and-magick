@@ -1,17 +1,18 @@
 'use strict';
 
-var wizadrs = [];
-var count = 4;
-var firstName = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристов', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-var surname = [' да Марья', ' Верон', ' Мирабелла', ' Вальц', ' Онопко', ' Топольницкая', ' Нионго', ' Ирвинг'];
-var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
+var COUNT = 4;
+var wizardParams = {
+  FIRST_NAME: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристов', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
+  SURNAME: [' да Марья', ' Верон', ' Мирабелла', ' Вальц', ' Онопко', ' Топольницкая', ' Нионго', ' Ирвинг'],
+  COAT_COLOR: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
+  EYES_COLOR: ['black', 'red', 'blue', 'yellow', 'green']
+};
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var fragment = document.createDocumentFragment();
 
-var getRandomKey = function (arr) {
-  return Math.floor(Math.random() * arr.length);
+var getRandomNumber = function (number) {
+  return Math.floor(Math.random() * number);
 };
 
 var renderWizard = function (data) {
@@ -22,7 +23,7 @@ var renderWizard = function (data) {
   return wizard;
 };
 
-while (--count >= 0) {
+while (--COUNT >= 0) {
   wizadrs.push({
     firstName: firstName[getRandomKey(firstName)] + surname[getRandomKey(surname)],
     coatColor: coatColor[getRandomKey(coatColor)],
