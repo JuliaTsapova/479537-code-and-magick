@@ -8,6 +8,7 @@ var wizardParams = {
   EYES_COLOR: ['black', 'red', 'blue', 'yellow', 'green'],
   FIREBALL_COLOR: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
 };
+
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
